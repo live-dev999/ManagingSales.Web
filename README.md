@@ -5,6 +5,8 @@ Azure Build Status
 
 GitHub Build Status 
 
+[![ManagingSales.Web](https://github.com/live-dev999/ManagingSales.Web/actions/workflows/github-ci.yml/badge.svg?branch=dev)](https://github.com/live-dev999/ManagingSales.Web/actions/workflows/github-ci.yml)
+
 
 ## **Preinstalled software**
 - [Visual Studio 2022](https://visualstudio.microsoft.com/downloads/) or [Microsoft VS Code](https://visualstudio.microsoft.com/downloads/)
