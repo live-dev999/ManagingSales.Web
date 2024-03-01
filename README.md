@@ -1,9 +1,16 @@
+# Build info
+Azure Build Status
+
+[![Build Status](https://dev.azure.com/o2bionics-products/ManagingSales.Web/_apis/build/status%2FManagingSales.Web?branchName=dev)](https://dev.azure.com/o2bionics-products/ManagingSales.Web/_build/latest?definitionId=61&branchName=dev)
+
+GitHub Build Status 
+
+
 ## **Preinstalled software**
 - [Visual Studio 2022](https://visualstudio.microsoft.com/downloads/) or [Microsoft VS Code](https://visualstudio.microsoft.com/downloads/)
 - [Microsoft SQL Server or Docker image with (minimal version version 2019 and up)](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) 
 - [.Net Core 7](https://dotnet.microsoft.com/en-us/download/dotnet/7.0)
   
-
 
 ## **Getting Started**
 ### Steps: 
