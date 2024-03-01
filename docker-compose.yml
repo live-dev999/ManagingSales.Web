@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  managingsales.app:
+    image: ${DOCKER_REGISTRY-}managingsales
+    build:
+      context: .
+      dockerfile: src/ManagingSales.App/Dockerfile
