@@ -48,7 +48,7 @@ Create docker-compose.yaml file in root folder with code:
 
 services:
   sql.data:
-    image: mcr.microsoft.com/mssql/server:2017-latest
+    image: mcr.microsoft.com/mssql/server:2019-latest
     container_name: sqldatacontainer
 ```
 Create docker-compose.override.yaml in root folder with code:
