@@ -21,4 +21,15 @@
   <ItemGroup>
     <Folder Include="Core\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ManagingSales.Data\ManagingSales.Data.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\ManagingSales.Business\ManagingSales.Business.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\ManagingSales.Impl\ManagingSales.Impl.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
