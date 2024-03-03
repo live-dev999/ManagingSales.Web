@@ -5,6 +5,13 @@ networks:
   backend:
 
 services:
+  seq:
+    environment:
+      ACCEPT_EULA: Y
+    ports:
+      - '80:80'
+      - '5341:5341'
+
   sql.data:
     environment:
       - SA_PASSWORD=your@Password

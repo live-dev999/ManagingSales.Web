@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+  seq:
+    image: datalust/seq:latest
+
+  sql.data:
+    image: mcr.microsoft.com/azure-sql-edge
+    container_name: sqldatacontainer
+
+  managingsales.app:
+    image: ${DOCKER_REGISTRY-}managingsales
+    build:
+      context: .
+      dockerfile: src/ManagingSales.App/Dockerfile
+
+  managingsales.api:
+    image: ${DOCKER_REGISTRY-}managingsales.api
+    build:
+      context: .
+      dockerfile: src/ManagingSales.API/Dockerfile
+
