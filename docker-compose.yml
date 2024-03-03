@@ -9,12 +9,14 @@ services:
     container_name: sqldatacontainer
 
   managingsales.app:
-    image: ${DOCKER_REGISTRY-}managingsales
+    image: ${DOCKER_REGISTRY-}managingsales.app
+    container_name: managingsalesapp
     build:
       context: .
       dockerfile: src/ManagingSales.App/Dockerfile
 
   managingsales.api:
+    container_name: managingsalesapi
     image: ${DOCKER_REGISTRY-}managingsales.api
     build:
       context: .

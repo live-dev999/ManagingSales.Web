@@ -3,7 +3,7 @@
 FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
 WORKDIR /app
 EXPOSE 80
-EXPOSE 443
+# EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
@@ -13,7 +13,7 @@ COPY ["src/ManagingSales.Business/ManagingSales.Business.csproj", "src/ManagingS
 COPY ["src/ManagingSales.Impl/ManagingSales.Impl.csproj", "src/ManagingSales.Impl/"]
 RUN dotnet restore "src/ManagingSales.API/ManagingSales.API.csproj"
 COPY . .
-WORKDIR "/src/src/ManagingSales.API"
+WORKDIR "src/ManagingSales.API"
 RUN dotnet build "ManagingSales.API.csproj" -c Release -o /app/build
 
 FROM build AS publish

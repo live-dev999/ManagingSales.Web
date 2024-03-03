@@ -47,7 +47,7 @@ if (app.Environment.IsDevelopment())
 //Add support to logging request with SERILOG
 app.UseSerilogRequestLogging();
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseCors("AllowAll");
 

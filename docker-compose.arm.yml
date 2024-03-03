@@ -9,7 +9,7 @@ services:
     container_name: sqldatacontainer
 
   managingsales.app:
-    image: ${DOCKER_REGISTRY-}managingsales
+    image: ${DOCKER_REGISTRY-}managingsales.app
     build:
       context: .
       dockerfile: src/ManagingSales.App/Dockerfile

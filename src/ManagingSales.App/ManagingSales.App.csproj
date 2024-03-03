@@ -8,9 +8,6 @@
     <UserSecretsId>ab661063-74de-4b21-8b42-f92756731ce7</UserSecretsId>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' ">
-    <ExternalConsole>true</ExternalConsole>
-  </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' ">
     <ExternalConsole>true</ExternalConsole>
   </PropertyGroup>
@@ -20,9 +17,4 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\ManagingSales.Data\ManagingSales.Data.csproj">
-      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
-    </ProjectReference>
-  </ItemGroup>
 </Project>
