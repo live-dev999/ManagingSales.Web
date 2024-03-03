@@ -89,7 +89,7 @@ dotnet run [options]
 ## **IMPORTANT NOTES!**
 ***If you are using an empty database then you need to migrate using the command***
 ```
-dotnet ef database update --project .\ManagingSales.Data\ManagingSales.Data.csproj --startup-project .\ManagingSales.App\ManagingSales.App.csproj -c ManagingSalesContext
+dotnet ef database update --project .\ManagingSales.Data\ManagingSales.Data.csproj --startup-project .\ManagingSales.API\ManagingSales.API.csproj -c ManagingSalesContext
 ```
 The source code contains sql scripts, so these scripts must be executed
 

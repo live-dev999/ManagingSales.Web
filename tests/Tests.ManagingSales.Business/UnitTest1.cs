@@ -1,4 +1,4 @@
-﻿namespace Tests.ManagingSales.Web;
+﻿namespace Tests.ManagingSales.Business;
 
 public class UnitTest1
 {
