@@ -30,6 +30,11 @@ builder.Services.AddSwaggerGen();
 builder.Host.UseSerilog((context, configuration) =>
     configuration.WriteTo.Console().ReadFrom.Configuration(context.Configuration));
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", rule => rule.AllowAnyMethod().AllowAnyHeader());
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -43,6 +48,8 @@ if (app.Environment.IsDevelopment())
 app.UseSerilogRequestLogging();
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowAll");
 
 app.UseAuthorization();
 
