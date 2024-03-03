@@ -68,6 +68,11 @@ So, Now we can run docker-compose command for create local docker image
 docker-compose -f docker-compose.yml -f docker-compose.override.yml up
 ```
 
+if you use docker-compose for arm
+
+```
+docker-compose -f docker-compose.arm.yml -f docker-compose.override.yml up
+```
 
 ### **Deploy local database in your machine (alternative method)**
 Go to link [for download Microsoft SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads). IInstall Microsoft SQL Server using the installer or any other method available.
