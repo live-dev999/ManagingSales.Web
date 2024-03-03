@@ -23,6 +23,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace ManagingSales.API.Controllers
 {
     [AllowAnonymous]
+    [ApiController]
+    [Route("[controller]")]
     public partial class VersionController : BaseApiController
     {
 
