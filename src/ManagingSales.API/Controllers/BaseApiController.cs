@@ -14,17 +14,32 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+using ManagingSales.API.Core;
+using Microsoft.AspNetCore.Mvc;
 
-using Microsoft.AspNetCore.Components.Web;
-using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using ManagingSales.App;
+namespace ManagingSales.API.Controllers
+{
+    [ApiController]
+    [Microsoft.AspNetCore.Components.Route("api/[controller]")]
+    public class BaseApiController : ControllerBase
+    {
+        #region Methods
 
-var builder = WebAssemblyHostBuilder.CreateDefault(args);
+        protected IActionResult HandleResult<T>(Result<T> result)
+        {
+            if (result == null)
+                return NotFound();
 
-builder.RootComponents.Add<App>("#app");
-builder.RootComponents.Add<HeadOutlet>("head::after");
+            if (result.IsSeccess && result.Value != null)
+                return Ok(result.Value);
 
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+            if (result.IsSeccess && result.Value == null)
+                return NotFound();
 
-await builder.Build().RunAsync();
+            return BadRequest(result.Error);
+        }
+
+        #endregion
+    }
+}
 
