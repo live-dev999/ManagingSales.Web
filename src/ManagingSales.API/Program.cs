@@ -32,7 +32,7 @@ builder.Host.UseSerilog((context, configuration) =>
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll", rule => rule.AllowAnyMethod().AllowAnyHeader());
+    options.AddPolicy("AllowAll", _ => _.AllowAnyMethod().AllowAnyHeader());
 });
 
 var app = builder.Build();
