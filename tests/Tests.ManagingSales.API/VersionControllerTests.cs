@@ -1,4 +1,4 @@
-﻿/*
+/*
  *   Copyright (c) 2024 Dzianis Prokharchyk
 
  *   This program is free software: you can redistribute it and/or modify
@@ -15,16 +15,28 @@
  *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.AspNetCore.Components.Web;
-using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using ManagingSales.App;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Logging;
+using Moq;
 
-var builder = WebAssemblyHostBuilder.CreateDefault(args);
+namespace Tests.ManagingSales.API
+{
+    public class VersionControllerTests
+    {
+        [Fact]
+        public async void VersionController_GetVersion_Test()
+        {
+            var moq = new Mock<IWebHostEnvironment>();
+            var loggerMoq = new Mock<ILogger<StubVersionController>>();
+            var stub = new StubVersionController(moq.Object, loggerMoq.Object)
+            {
+                VersionString = "1.0.0.0"
+            };
 
-builder.RootComponents.Add<App>("#app");
-builder.RootComponents.Add<HeadOutlet>("head::after");
+            var result = await stub.IndexAsync();
 
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-
-await builder.Build().RunAsync();
-
+            // Assert
+            Assert.NotNull(result);
+        }
+    }
+}
