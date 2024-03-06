@@ -8,7 +8,7 @@ namespace ManagingSales.API.Mappings
 {
     public static class OrderMappings
 	{
-        public static OrderDto ToViewModel(this Order model)
+        public static OrderDto ToDto(this Order model)
         {
             if (model == null)
                 return null;
@@ -36,7 +36,7 @@ namespace ManagingSales.API.Mappings
             return model;
         }
 
-        public static IReadOnlyCollection<OrderDto> ToViewModel(
+        public static IReadOnlyCollection<OrderDto> ToDto(
             this IReadOnlyCollection<Order> models)
         {
             if (models.Count == 0)
@@ -48,7 +48,7 @@ namespace ManagingSales.API.Mappings
             var i = 0;
             foreach (var model in models)
             {
-                subscription[i] = ToViewModel(model);
+                subscription[i] = ToDto(model);
                 ++i;
             }
 

@@ -62,7 +62,7 @@ namespace ManagingSales.API.Controllers
             {
                 var models = await orderService.GetAllAsync(CancellationToken.None);
 
-                return Result<IReadOnlyCollection<OrderDto>>.Success(models.ToViewModel());
+                return Result<IReadOnlyCollection<OrderDto>>.Success(models.ToDto());
             }));
         }
 
@@ -72,9 +72,9 @@ namespace ManagingSales.API.Controllers
         {
             return HandleResult(await Task.Run(async () =>
             {
-                var certificate = await orderService.GetByIdAsync(id, ct);
+                var order = await orderService.GetByIdAsync(id, ct);
 
-                return Result<OrderDto>.Success(certificate.ToViewModel());
+                return Result<OrderDto>.Success(order.ToDto());
             }));
         }
 
@@ -84,9 +84,9 @@ namespace ManagingSales.API.Controllers
         {
             return HandleResult(await Task.Run(async () =>
             {
-                var certificate = await orderService.UpdateAsync(model.ToModel(), ct);
+                var order = await orderService.UpdateAsync(model.ToModel(), ct);
 
-                return Result<OrderDto>.Success(certificate.ToViewModel());
+                return Result<OrderDto>.Success(order.ToDto());
             }));
         }
 
@@ -97,10 +97,10 @@ namespace ManagingSales.API.Controllers
         {
             return HandleResult(await Task.Run(async () =>
             {
-                var certificate = await orderService.AddAsync(model.ToModel(), ct);
+                var order = await orderService.AddAsync(model.ToModel(), ct);
 
                 return Result<CreatedAtActionResult>.Success(
-                    CreatedAtAction(nameof(GetByIdAsync), new { id = certificate.Id }, certificate));
+                    CreatedAtAction(nameof(GetByIdAsync), new { id = order.Id }, order));
             }));
         }
 

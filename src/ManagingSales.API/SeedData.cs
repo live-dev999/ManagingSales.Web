@@ -16,7 +16,6 @@
  */
 
 
-using System;
 using System.Threading.Tasks;
 using ManagingSales.Data;
 using Microsoft.EntityFrameworkCore;
@@ -24,7 +23,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace ManagingSales.API
 {
-	public class SeedData
+    public class SeedData
 	{
         public static async Task SeedAsync(MSDbContext context, ConfigurationManager configuration)
         {
