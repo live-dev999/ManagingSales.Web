@@ -46,6 +46,9 @@ namespace ManagingSales.Impl.Services
 
         #endregion
 
+
+        #region Methods
+
         public async Task<IReadOnlyCollection<Order>> GetAllAsync(CancellationToken ct)
         {
             var Orders = await _context.Orders.AsNoTracking().OrderBy(_ => _.Id).ToListAsync();
@@ -78,6 +81,8 @@ namespace ManagingSales.Impl.Services
             _context.Orders.Remove(entityToRemove);
             await _context.SaveChangesAsync(ct);
         }
+
+        #endregion
     }
 }
 

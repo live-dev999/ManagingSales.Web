@@ -32,7 +32,7 @@ namespace ManagingSales.Impl.Services
         {
             new Order()
             {
-                Id = 1, Name = "First"
+                Id = 1, Name = "New York Building 1", State = StateArray.GetAbbreviation("New York")
             }
         };
         private long _currentId;
@@ -50,6 +50,7 @@ namespace ManagingSales.Impl.Services
 
 
         #region Methods
+
         public async Task<IReadOnlyCollection<Order>> GetAllAsync(CancellationToken ct)
         {
             await Task.Delay(3000, ct);
