@@ -1,4 +1,4 @@
-/*
+﻿/*
  *   Copyright (c) 2024 Dzianis Prokharchyk
 
  *   This program is free software: you can redistribute it and/or modify
@@ -14,13 +14,32 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
-namespace ManagingSales.Data.Entites
+namespace ManagingSales.API.Controllers
 {
-    public class OrderEntity
+    [AllowAnonymous]
+    [ApiController]
+    [Route("[controller]")]
+    public class SubElementContoller : BaseApiController
     {
-        public long Id { get; set; }
-        public string Name { get; set; }
-        public string State { get; set; }
+        #region Fields
+
+        private readonly ILogger<SubElementContoller> logger;
+
+        #endregion
+
+
+        #region Ctors
+
+        public SubElementContoller(ILogger<SubElementContoller> logger)
+        {
+            this.logger = logger;
+        }
+
+        #endregion
     }
 }
+

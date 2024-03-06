@@ -1,4 +1,4 @@
-/*
+﻿/*
  *   Copyright (c) 2024 Dzianis Prokharchyk
 
  *   This program is free software: you can redistribute it and/or modify
@@ -17,10 +17,9 @@
 
 namespace ManagingSales.Data.Entites
 {
-    public class OrderEntity
+    public enum TypeElement
     {
-        public long Id { get; set; }
-        public string Name { get; set; }
-        public string State { get; set; }
+        Window,
+        Doors
     }
 }

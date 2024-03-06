@@ -25,16 +25,22 @@ namespace ManagingSales.Data
 	public class MSDbContext : DbContext
     {
         #region Props
+
         public WindowEntity Windows { get; set; }
         public OrderEntity Orders { get; set; }
+        public SubElement SubElements { get; set; }
+
         #endregion
 
         #region Ctors
+
         public MSDbContext(DbContextOptions<MSDbContext> options)
             : base(options)
         {
         }
+
         #endregion
+
 
         #region Methods
 

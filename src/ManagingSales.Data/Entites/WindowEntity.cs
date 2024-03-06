@@ -19,6 +19,7 @@ namespace ManagingSales.Data.Entites
 {
     public class WindowEntity
     {
+        public long Id { get; set; }
         public string Name { get; set; }
         public int QuantityOfWindows { get; set; }
         public int TotalSubElements { get; set; }
