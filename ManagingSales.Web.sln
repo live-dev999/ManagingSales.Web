@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.ManagingSales.API", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagingSales.App", "src\ManagingSales.App\ManagingSales.App.csproj", "{81B21180-3CE8-4A79-9FFE-58B015DA2F56}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagingSales.StartupTasks", "src\ManagingSales.StartupTasks\ManagingSales.StartupTasks.csproj", "{FAF83D6C-16F5-49FF-A64C-7D00DF987458}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{81B21180-3CE8-4A79-9FFE-58B015DA2F56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81B21180-3CE8-4A79-9FFE-58B015DA2F56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81B21180-3CE8-4A79-9FFE-58B015DA2F56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAF83D6C-16F5-49FF-A64C-7D00DF987458}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAF83D6C-16F5-49FF-A64C-7D00DF987458}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAF83D6C-16F5-49FF-A64C-7D00DF987458}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAF83D6C-16F5-49FF-A64C-7D00DF987458}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -91,6 +97,7 @@ Global
 		{70B7FAED-759F-4728-A1DE-A3CA38FB24A0} = {B517EF7A-FB63-481B-8905-96067CA2C044}
 		{4003267B-7437-49F3-9DC6-4325458577B2} = {EEBB652F-34B0-4EBF-8A7F-6C6A45A4F312}
 		{81B21180-3CE8-4A79-9FFE-58B015DA2F56} = {70B7FAED-759F-4728-A1DE-A3CA38FB24A0}
+		{FAF83D6C-16F5-49FF-A64C-7D00DF987458} = {B517EF7A-FB63-481B-8905-96067CA2C044}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AE949C8A-6109-45FA-9CC3-3F3AF6E23D10}

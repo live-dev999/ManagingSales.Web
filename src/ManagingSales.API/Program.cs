@@ -15,9 +15,11 @@
  *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ManagingSales.API.IoC;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
 
 // Add services to the container.
 
@@ -34,6 +36,12 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", _ => _.AllowAnyMethod().AllowAnyHeader());
 });
+
+builder.Services
+    .AddConfigEf(configuration)
+    //.AddDatabaseInitializer<MSDbContext>()
+    .AddBusiness()
+    .AddInfrastructure();
 
 var app = builder.Build();
 
@@ -52,7 +60,16 @@ app.UseSerilogRequestLogging();
 app.UseCors("AllowAll");
 
 app.UseAuthorization();
+app.Use(async (context, next) =>
+{
+    context.Response.OnStarting(() =>
+    {
+        context.Response.Headers.Add("X-Powered-By", "ManagingSales");
+        return Task.CompletedTask;
+    });
 
+    await next.Invoke();
+});
 app.MapControllers();
 
 app.Run();

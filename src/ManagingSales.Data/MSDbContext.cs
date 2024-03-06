@@ -1,4 +1,4 @@
-/*
+﻿/*
  *   Copyright (c) 2024 Dzianis Prokharchyk
 
  *   This program is free software: you can redistribute it and/or modify
@@ -15,30 +15,23 @@
  *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Logging;
-using Moq;
+using System;
+using Microsoft.EntityFrameworkCore;
 
-namespace Tests.ManagingSales.API
+namespace ManagingSales.Data
 {
-    public class VersionControllerTests
+	public class MSDbContext : DbContext
     {
-        [Fact]
-        public async void VersionController_GetVersion_Test()
+        #region Props
+
+        #endregion
+
+        #region Ctors
+        public MSContextDb(DbContextOptions<MSContextDb> options)
+            : base(options)
         {
-            var expectedVersion = "1.0.0.0";
-            var moq = new Mock<IWebHostEnvironment>();
-            var loggerMoq = new Mock<ILogger<StubVersionController>>();
-            var stub = new StubVersionController(moq.Object, loggerMoq.Object)
-            {
-                VersionString = "1.0.0.0"
-            };
-
-            var result = await stub.IndexAsync();
-
-            // Assert
-            Assert.NotNull(result);
-            Assert.Equal(expectedVersion, stub.VersionString);
         }
+        #endregion
     }
 }
+

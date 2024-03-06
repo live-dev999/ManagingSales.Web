@@ -1,4 +1,4 @@
-/*
+﻿/*
  *   Copyright (c) 2024 Dzianis Prokharchyk
 
  *   This program is free software: you can redistribute it and/or modify
@@ -14,31 +14,22 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+using System;
+using ManagingSales.Data;
+using Microsoft.EntityFrameworkCore;
 
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Logging;
-using Moq;
-
-namespace Tests.ManagingSales.API
+namespace ManagingSales.API.StartupHelpers
 {
-    public class VersionControllerTests
+    internal static class DatabaseExtensions
     {
-        [Fact]
-        public async void VersionController_GetVersion_Test()
+        internal static async Task EnsureDbUpdate(this IWebHost host)
         {
-            var expectedVersion = "1.0.0.0";
-            var moq = new Mock<IWebHostEnvironment>();
-            var loggerMoq = new Mock<ILogger<StubVersionController>>();
-            var stub = new StubVersionController(moq.Object, loggerMoq.Object)
+            using (var scope = host.Services.CreateScope())
             {
-                VersionString = "1.0.0.0"
-            };
-
-            var result = await stub.IndexAsync();
-
-            // Assert
-            Assert.NotNull(result);
-            Assert.Equal(expectedVersion, stub.VersionString);
+                var context = scope.ServiceProvider.GetRequiredService<MSDbContext>();
+                await context.Database.MigrateAsync();
+            }
         }
     }
 }
+
