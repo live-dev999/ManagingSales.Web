@@ -15,24 +15,25 @@
  *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ManagingSales.Data.Entites;
+
+using System;
+using System.Threading.Tasks;
+using ManagingSales.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
-namespace ManagingSales.Data
+namespace ManagingSales.API
 {
-	public class MSDbContext : DbContext
-    {
-        #region Props
-        public WindowEntity Windows { get; set; }
-        public OrderEntity Orders { get; set; }
-        #endregion
-
-        #region Ctors
-        public MSDbContext(DbContextOptions<MSDbContext> options)
-            : base(options)
+	public class SeedData
+	{
+        public static async Task SeedAsync(MSDbContext context, ConfigurationManager configuration)
         {
+            // context.Database.EnsureDeleted();
+            if (bool.Parse(configuration["IsTests"]) == false)
+            {
+                await context.Database.MigrateAsync();
+            }
         }
-        #endregion
-    }
+	}
 }
 

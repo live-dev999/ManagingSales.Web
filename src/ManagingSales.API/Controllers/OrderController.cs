@@ -1,9 +1,29 @@
-﻿using ManagingSales.API.Core;
+﻿/*
+ *   Copyright (c) 2024 Dzianis Prokharchyk
+
+ *   This program is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+
+ *   You should have received a copy of the GNU General Public License
+ *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using ManagingSales.API.Core;
 using ManagingSales.API.DTOs;
 using ManagingSales.API.Mappings;
 using ManagingSales.Business.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace ManagingSales.API.Controllers
 {
@@ -12,6 +32,7 @@ namespace ManagingSales.API.Controllers
     [Route("[controller]")]
     public class OrderController: BaseApiController
     {
+
         #region Fields
 
         private readonly IOrderService orderService;
@@ -61,9 +82,12 @@ namespace ManagingSales.API.Controllers
         [Route("id")]
         public async Task<IActionResult> UpdateAsync(long id, OrderDto model, CancellationToken ct)
         {
-            var certificate = await orderService.UpdateAsync(model.ToModel(), ct);
+            return HandleResult(await Task.Run(async () =>
+            {
+                var certificate = await orderService.UpdateAsync(model.ToModel(), ct);
 
-            return Ok(certificate.ToViewModel());
+                return Result<OrderDto>.Success(certificate.ToViewModel());
+            }));
         }
 
         [HttpPost]
@@ -71,21 +95,29 @@ namespace ManagingSales.API.Controllers
         [Route("")]
         public async Task<IActionResult> AddAsync(OrderDto model, CancellationToken ct)
         {
-            var certificate = await orderService.AddAsync(model.ToModel(), ct);
+            return HandleResult(await Task.Run(async () =>
+            {
+                var certificate = await orderService.AddAsync(model.ToModel(), ct);
 
-            return CreatedAtAction(nameof(GetByIdAsync), new { id = certificate.Id }, certificate);
+                return Result<CreatedAtActionResult>.Success(
+                    CreatedAtAction(nameof(GetByIdAsync), new { id = certificate.Id }, certificate));
+            }));
         }
 
         [HttpDelete]
         [Route("id")]
         public async Task<IActionResult> RemoveAsync(long id, CancellationToken ct)
         {
-            await orderService.RemoveAsync(id, ct);
+            return HandleResult(await Task.Run(async () =>
+            {
+                await orderService.RemoveAsync(id, ct);
 
-            return NoContent();
+                return Result<NoContentResult>.Success(NoContent());
+            }));
         }
 
         #endregion
+
     }
 }
 

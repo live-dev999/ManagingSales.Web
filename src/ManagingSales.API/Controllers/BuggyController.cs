@@ -15,6 +15,7 @@
  *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ManagingSales.API.Controllers
@@ -26,6 +27,7 @@ namespace ManagingSales.API.Controllers
     [Route("api/[controller]")]
     public class BuggyController : BaseApiController
     {
+
         #region Methods
 
         [HttpGet("not-found")]
@@ -53,5 +55,6 @@ namespace ManagingSales.API.Controllers
         }
 
         #endregion
+
     }
 }

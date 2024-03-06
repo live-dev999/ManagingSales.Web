@@ -15,7 +15,11 @@
  *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading.Tasks;
 using ManagingSales.API.IoC;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -38,7 +42,7 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services
-    .AddConfigEf(configuration)
+    //.AddConfigEf(configuration)
     //.AddDatabaseInitializer<MSDbContext>()
     .AddBusiness()
     .AddInfrastructure();

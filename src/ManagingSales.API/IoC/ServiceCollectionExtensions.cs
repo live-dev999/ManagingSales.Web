@@ -14,8 +14,13 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+using System;
 using ManagingSales.Business.Services;
+using ManagingSales.Data;
 using ManagingSales.Impl.Services;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ManagingSales.API.IoC
 {
@@ -41,12 +46,16 @@ namespace ManagingSales.API.IoC
             return config;
         }
 
-        public static IServiceCollection AddConfigEf(this IServiceCollection services, ConfigurationManager configuration)
+        public static IServiceCollection AddConfigEf(this IServiceCollection services, IConfiguration configuration)
         {
-            //
+            var connectionString = configuration["ConnectionString"];
+
+            services.AddDbContext<MSDbContext>(x =>
+                x.UseSqlServer(connectionString));
 
             return services;
         }
+
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
             //

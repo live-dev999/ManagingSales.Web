@@ -15,14 +15,12 @@
  *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ManagingSales.API.Core
+namespace ManagingSales.API.DTOs
 {
 
-        public class VersionResult{
-            public string Environment { get; set; }
-            public string Version { get; set; }
-        }
-    
-
-    
+    public class VersionResult
+    {
+        public string Environment { get; set; }
+        public string Version { get; set; }
+    }
 }

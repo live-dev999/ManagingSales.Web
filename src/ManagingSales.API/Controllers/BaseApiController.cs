@@ -23,6 +23,7 @@ namespace ManagingSales.API.Controllers
     [Microsoft.AspNetCore.Components.Route("api/[controller]")]
     public class BaseApiController : ControllerBase
     {
+
         #region Methods
 
         protected IActionResult HandleResult<T>(Result<T> result)
@@ -40,6 +41,7 @@ namespace ManagingSales.API.Controllers
         }
 
         #endregion
+
     }
 }
 

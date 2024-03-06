@@ -15,10 +15,15 @@
  *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Reflection;
+using System.Threading.Tasks;
 using ManagingSales.API.Core;
+using ManagingSales.API.DTOs;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace ManagingSales.API.Controllers
 {
