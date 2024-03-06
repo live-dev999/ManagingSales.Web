@@ -19,6 +19,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ManagingSales.API.Controllers
 {
+    /// <summary>
+    /// Controller for testing client error behavior
+    /// </summary>
     [ApiController]
     [Route("api/[controller]")]
     public class BuggyController : BaseApiController
