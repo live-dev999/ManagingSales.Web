@@ -15,8 +15,10 @@
  *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using ManagingSales.Data.Entites;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ManagingSales.Data
 {
@@ -32,6 +34,22 @@ namespace ManagingSales.Data
             : base(options)
         {
         }
+        #endregion
+
+        #region Methods
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            var converter = new ValueConverter<TypeElement, string>(
+                    v => v.ToString(),
+                    v => (TypeElement)Enum.Parse(typeof(TypeElement), v));
+
+            modelBuilder
+                .Entity<SubElement>()
+                .Property(e => e.Type)
+                .HasConversion(converter);
+        }
+
         #endregion
     }
 }
