@@ -99,9 +99,11 @@ namespace ManagingSales.API.Controllers
             {
                 var order = await orderService.AddAsync(model.ToModel(), ct);
 
-                return Result<CreatedAtActionResult>.Success(
-                    CreatedAtAction(nameof(GetByIdAsync), new { id = order.Id }, order));
+                //var expectedModel = CreatedAtAction(nameof(GetByIdAsync), new { id = order.Id }, order);
+
+                return Result<OrderDto>.Success(order.ToDto());
             }));
+                   
         }
 
         [HttpDelete]

@@ -27,25 +27,24 @@ var configuration = builder.Configuration;
 
 // Add services to the container.
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-//Add support to logging with SERILOG
-builder.Host.UseSerilog((context, configuration) =>
-    configuration.WriteTo.Console().ReadFrom.Configuration(context.Configuration));
+builder.Services
+    //.AddConfigEf(configuration)
+    //.AddDatabaseInitializer<MSDbContext>()
+    .AddRequiredMvcComponents()
+    .AddBusiness()
+    .AddEndpointsApiExplorer()
+    // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+    .AddSwaggerGen();
 
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", _ => _.AllowAnyMethod().AllowAnyHeader());
 });
 
-builder.Services
-    //.AddConfigEf(configuration)
-    //.AddDatabaseInitializer<MSDbContext>()
-    .AddBusiness()
-    .AddInfrastructure();
+//Add support to logging with SERILOG
+builder.Host.UseSerilog((context, configuration) =>
+    configuration.WriteTo.Console().ReadFrom.Configuration(context.Configuration));
+
 
 var app = builder.Build();
 
@@ -68,7 +67,7 @@ app.Use(async (context, next) =>
 {
     context.Response.OnStarting(() =>
     {
-        context.Response.Headers.Add("X-Powered-By", "ManagingSales");
+        context.Response.Headers.Add("X-Powered-By", "ManagingSales: Example test task");
         return Task.CompletedTask;
     });
 

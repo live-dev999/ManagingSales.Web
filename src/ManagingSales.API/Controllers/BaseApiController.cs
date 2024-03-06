@@ -33,7 +33,7 @@ namespace ManagingSales.API.Controllers
 
             if (result.IsSeccess && result.Value != null)
                 return Ok(result.Value);
-
+    
             if (result.IsSeccess && result.Value == null)
                 return NotFound();
 

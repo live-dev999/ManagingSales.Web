@@ -44,15 +44,15 @@ namespace ManagingSales.API.Mappings
                 return Array.Empty<OrderDto>();
             }
 
-            var subscription = new OrderDto[models.Count];
+            var orders = new OrderDto[models.Count];
             var i = 0;
             foreach (var model in models)
             {
-                subscription[i] = ToDto(model);
+                orders[i] = ToDto(model);
                 ++i;
             }
 
-            return new ReadOnlyCollection<OrderDto>(subscription);
+            return new ReadOnlyCollection<OrderDto>(orders);
         }
     }
 }

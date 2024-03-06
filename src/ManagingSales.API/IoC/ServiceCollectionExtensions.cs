@@ -46,19 +46,18 @@ namespace ManagingSales.API.IoC
             return config;
         }
 
-        public static IServiceCollection AddConfigEf(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddRequiredMvcComponents(this IServiceCollection services)
+        {
+            services.AddControllers();
+            return services;
+        }
+
+            public static IServiceCollection AddConfigEf(this IServiceCollection services, IConfiguration configuration)
         {
             var connectionString = configuration["ConnectionString"];
 
             services.AddDbContext<MSDbContext>(x =>
                 x.UseSqlServer(connectionString));
-
-            return services;
-        }
-
-        public static IServiceCollection AddInfrastructure(this IServiceCollection services)
-        {
-            //
 
             return services;
         }
