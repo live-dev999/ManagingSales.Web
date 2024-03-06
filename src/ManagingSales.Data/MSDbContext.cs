@@ -18,19 +18,21 @@
 using System;
 using ManagingSales.Data.Entites;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ManagingSales.Data
 {
-	public class MSDbContext : DbContext
+    public class MSDbContext : DbContext
     {
         #region Props
 
-        public WindowEntity Windows { get; set; }
-        public OrderEntity Orders { get; set; }
-        public SubElement SubElements { get; set; }
+        public DbSet<WindowEntity> Windows { get; set; }
+        public DbSet<OrderEntity> Orders { get; set; }
+        public DbSet<SubElement> SubElements { get; set; }
 
         #endregion
+
 
         #region Ctors
 
@@ -44,16 +46,36 @@ namespace ManagingSales.Data
 
         #region Methods
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        private void ConfigureWindowEntity(EntityTypeBuilder<WindowEntity> builder)
+        {
+            builder.ToTable("Window");
+
+            builder.Property(ci => ci.Id)
+                .HasColumnType("bigint")
+                .UseHiLo("window_hilo")
+                .IsRequired();
+        }
+
+        private void ConfigureSubElementEntity(EntityTypeBuilder<SubElement> builder)
         {
             var converter = new ValueConverter<TypeElement, string>(
-                    v => v.ToString(),
-                    v => (TypeElement)Enum.Parse(typeof(TypeElement), v));
+                   v => v.ToString(),
+                   v => (TypeElement)Enum.Parse(typeof(TypeElement), v));
 
-            modelBuilder
-                .Entity<SubElement>()
+            builder.Property(ci => ci.Id)
+               .HasColumnType("bigint")
+               .UseHiLo("sub_element_hilo")
+               .IsRequired();
+
+            builder
                 .Property(e => e.Type)
                 .HasConversion(converter);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<WindowEntity>(ConfigureWindowEntity);
+            modelBuilder.Entity<SubElement>(ConfigureSubElementEntity);
         }
 
         #endregion
