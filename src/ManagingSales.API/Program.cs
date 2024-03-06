@@ -32,7 +32,7 @@ builder.Host.UseSerilog((context, configuration) =>
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll", rule => rule.AllowAnyMethod().AllowAnyHeader());
+    options.AddPolicy("AllowAll", _ => _.AllowAnyMethod().AllowAnyHeader());
 });
 
 var app = builder.Build();
@@ -47,7 +47,7 @@ if (app.Environment.IsDevelopment())
 //Add support to logging request with SERILOG
 app.UseSerilogRequestLogging();
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseCors("AllowAll");
 

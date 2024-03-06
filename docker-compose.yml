@@ -1,0 +1,24 @@
+version: '3.4'
+
+services:
+  seq:
+    image: datalust/seq:latest
+
+  sql.data:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: sqldatacontainer
+
+  managingsales.app:
+    image: ${DOCKER_REGISTRY-}managingsales.app
+    container_name: managingsalesapp
+    build:
+      context: .
+      dockerfile: src/ManagingSales.App/Dockerfile
+
+  managingsales.api:
+    container_name: managingsalesapi
+    image: ${DOCKER_REGISTRY-}managingsales.api
+    build:
+      context: .
+      dockerfile: src/ManagingSales.API/Dockerfile
+

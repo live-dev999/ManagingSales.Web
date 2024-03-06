@@ -1,0 +1,49 @@
+version: '3.4'
+
+networks:
+  frontend:
+  backend:
+
+services:
+  seq:
+    environment:
+      ACCEPT_EULA: Y
+    ports:
+      - '80:80'
+      - '5341:5341'
+
+  sql.data:
+    environment:
+      - SA_PASSWORD=your@Password
+      - ACCEPT_EULA=Y
+      - MSSQL_PID=Developer
+    ports:
+      - "1433:1433"
+    networks:
+      - backend
+
+  managingsales.app:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "8080:80"
+    volumes:
+      - ~/.aspnet/https:/root/.aspnet/https:ro
+      - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
+    networks:
+      - backend
+      - frontend
+  
+  managingsales.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "80"
+    volumes:
+      - ~/.aspnet/https:/root/.aspnet/https:ro
+      - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
+    networks:
+      - backend
+      - frontend
