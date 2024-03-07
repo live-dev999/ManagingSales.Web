@@ -29,7 +29,7 @@ namespace ManagingSales.API.Controllers
 {
     [AllowAnonymous]
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class OrderController: BaseApiController
     {
 
