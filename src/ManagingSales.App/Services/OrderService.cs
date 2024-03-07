@@ -22,6 +22,7 @@ using System.Threading.Tasks;
 using ManagingSales.API.Services;
 using ManagingSales.App.Config;
 using ManagingSales.App.DTOs;
+using Microsoft.Extensions.Logging;
 
 namespace ManagingSales.App.Services
 {
@@ -29,20 +30,19 @@ namespace ManagingSales.App.Services
     {
         #region Fields
 
-        //private readonly ILogger<OrderService> logger;
-        //private readonly UrlsConfig config;
+        private readonly ILogger<OrderService> logger;
+        private readonly UrlsConfig config;
         private HttpClient httpClient;
 
         #endregion
 
         #region Ctors
 
-        public OrderService(HttpClient httpClient)
+        public OrderService(HttpClient httpClient, ILogger<OrderService> logger, UrlsConfig config)
         {
-            //this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
             this.httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
-            //httpClient = new HttpClient() { BaseAddress = new Uri("http://localhost:38163/") };
-            //this.config = config ?? throw new ArgumentNullException(nameof(config));
+            this.config = config ?? throw new ArgumentNullException(nameof(config));
         }
 
         #endregion
@@ -52,7 +52,6 @@ namespace ManagingSales.App.Services
 
         public async Task<List<OrderDto>> GetAllAsync(CancellationToken ct)
         {
-            //httpClient = new HttpClient() { BaseAddress = new Uri("http://localhost:38163/") };
             var response = await httpClient.GetAsync($"api/order", ct);
             return await response.Content.ReadAsAsync<List<OrderDto>>(ct);
         }
