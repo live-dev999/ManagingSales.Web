@@ -22,7 +22,6 @@ using ManagingSales.App.Config;
 using ManagingSales.App.IoC;
 using Microsoft.Extensions.DependencyInjection;
 using ManagingSales.App.Services;
-using System.Net.Http;
 using System;
 using Microsoft.Extensions.Configuration;
 
@@ -33,8 +32,27 @@ builder.Services.ConfigurePOCO<UrlsConfig>(configuration.GetSection("urls"));
 
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
-builder.Services.AddSingleton<IOrderService, OrderService>();
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress =  new Uri(configuration.GetValue<string>("urls:apiUrl") )});
+//builder.Services.AddScoped(
+//    sp => new HttpClient 
+//    { 
+//        BaseAddress =  new Uri(configuration.GetValue<string>("urls:ApiUrl") )
+//    });
+//builder.Services.AddScoped<IOrderService, OrderService>();
+
+builder.Services.AddHttpClient<IOrderService, OrderService>(client =>
+{
+   client.BaseAddress = new Uri(configuration.GetValue<string>("urls:ApiUrl"));
+});
+//builder.Services.AddScoped<IOrderService, OrderService>();
+//builder.Services.AddScoped(
+//    sp => sp.GetService<IHttpClientFactory>().CreateClient("OrderAPI"));
+
+//builder.Services.AddScoped<IOrderService, OrderService>();
+
+// builder.Services.AddHttpClient<IOrderService, OrderService>(client =>
+// {
+//     client.BaseAddress = new Uri(configuration.GetValue<string>("urls:ApiUrl"));
+// });
 //builder.Services.AddApplicationServices(configuration);
 await builder.Build().RunAsync();
 

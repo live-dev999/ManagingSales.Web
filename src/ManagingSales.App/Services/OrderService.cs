@@ -39,10 +39,10 @@ namespace ManagingSales.App.Services
 
         public OrderService(HttpClient httpClient)
         {
-            //logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+            //this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            this.httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
             //httpClient = new HttpClient() { BaseAddress = new Uri("http://localhost:38163/") };
-            //config = config ?? throw new ArgumentNullException(nameof(config));
+            //this.config = config ?? throw new ArgumentNullException(nameof(config));
         }
 
         #endregion

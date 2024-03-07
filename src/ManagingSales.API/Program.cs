@@ -38,7 +38,7 @@ builder.Services
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll", _ => _.AllowAnyMethod().AllowAnyHeader());
+    options.AddPolicy("AllowAll", _ => _.WithOrigins("http://localhost:5054").AllowAnyMethod().AllowAnyHeader());
 });
 
 //Add support to logging with SERILOG
@@ -63,16 +63,16 @@ app.UseSerilogRequestLogging();
 app.UseCors("AllowAll");
 
 app.UseAuthorization();
-app.Use(async (context, next) =>
-{
-    context.Response.OnStarting(() =>
-    {
-        context.Response.Headers.Add("X-Powered-By", "ManagingSales: Example test task");
-        return Task.CompletedTask;
-    });
+// app.Use(async (context, next) =>
+// {
+//     context.Response.OnStarting(() =>
+//     {
+//         context.Response.Headers.Add("X-Powered-By", "ManagingSales: Example test task");
+//         return Task.CompletedTask;
+//     });
 
-    await next.Invoke();
-});
+//     await next.Invoke();
+// });
 app.MapControllers();
 
 app.Run();

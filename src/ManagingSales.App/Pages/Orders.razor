@@ -1,10 +1,9 @@
 ﻿@page "/orders"
-@*@inject IOrderService OrderService*@
-@inject HttpClient Http
 
-<PageTitle>Orders</PageTitle>
+<w>Orders</w>
+
 <h1>Orders</h1>
-@if (Items == null && Items.Count == 0)
+@if (Items == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -21,36 +20,30 @@ else
         </thead>
         <tbody>
             @foreach (var forecast in Items)
-                {
+            {
                 <tr>
                     <td>@forecast.Id.ToString()</td>
                     @*<td>@forecast.TemperatureC</td>
                         <td>@forecast.TemperatureF</td>
                         <td>@forecast.Summary</td>*@
                 </tr>
-                }
+            }
         </tbody>
     </table>
 }
 
 @code{
+    [Inject]
+    public IOrderService Service { get; set; }
 
     private List<OrderDto> Items { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        try
-        {
-            var response = await Http.GetAsync("http://localhost:38163/api/order");
-            
-            //this.Items = response.Content.ReadFromJsonAsync<List<OrderDto>>();
-        }
-        catch (Exception ex)
-        {
-            throw;
-        }
-    
+
+        this.Items = await Service.GetAllAsync(System.Threading.CancellationToken.None);
     }
 }
+
 
 

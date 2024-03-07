@@ -1,4 +1,4 @@
-/*
+﻿/*
  *   Copyright (c) 2024 Dzianis Prokharchyk
 
  *   This program is free software: you can redistribute it and/or modify
@@ -17,10 +17,10 @@
 
 namespace ManagingSales.App.DTOs
 {
-    public class OrderDto
+    public class Result
     {
-        public long Id { get; set; }
-        public string Name { get; set; }
-        public string State { get; set; }
+        public bool IsSeccess { get; set; }
+        public object Value { get; set; }
+        public string Error { get; set; }
     }
 }
