@@ -14,6 +14,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -56,6 +57,7 @@ namespace ManagingSales.API.Controllers
 
         [HttpGet]
         [Route("")]
+        [ProducesResponseType(200, Type = typeof(IReadOnlyCollection<OrderDto>))]
         public async Task<IActionResult> GetAllAsync()
         {
             return HandleResult(await Task.Run(async () =>
@@ -68,6 +70,8 @@ namespace ManagingSales.API.Controllers
 
         [HttpGet]
         [Route("{id}")]
+        [ProducesResponseType(200, Type = typeof(OrderDto))]
+        [ProducesResponseType(400)]
         public async Task<IActionResult> GetByIdAsync(long id, CancellationToken ct)
         {
             return HandleResult(await Task.Run(async () =>
