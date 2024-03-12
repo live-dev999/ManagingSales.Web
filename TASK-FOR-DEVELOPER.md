@@ -10,16 +10,23 @@ Provide source code with all necessary information to run and test the applicati
 
 ```
 <Orders>
-<Order Name="New York Building 1" State="NY">
-<Windows>
-<Window Name="A51" QuantityOfWindows="4" TotalSubElements="3">
-<SubElements>
-<SubElement Element="1" Type="Doors" Width="1200" Height="1850" /> <SubElement Element="2" Type="Window" Width="800" Height="1850" /> <SubElement Element="3" Type="Window" Width="700" Height="1850" />
-</SubElements> </Window>
-<Window Name="C Zone 5" QuantityOfWindows="2" TotalSubElements="1"> <SubElements>
-<SubElement Element="1" Type="Window" Width="1500" Height="2000" /> </SubElements>
-</Window> </Windows>
-</Order>
-<Order Name="California Hotel AJK" State="CA">
-</Order> </Orders>
+    <Order Name="New York Building 1" State="NY">
+        <Windows>
+            <Window Name="A51" QuantityOfWindows="4" TotalSubElements="3">
+                <SubElements>
+                    <SubElement Element="1" Type="Doors" Width="1200" Height="1850" />
+                    <SubElement Element="2" Type="Window" Width="800" Height="1850" />
+                    <SubElement Element="3" Type="Window" Width="700" Height="1850" />
+                </SubElements>
+            </Window>
+            <Window Name="C Zone 5" QuantityOfWindows="2" TotalSubElements="1">
+                <SubElements>
+                    <SubElement Element="1" Type="Window" Width="1500" Height="2000" />
+                </SubElements>
+            </Window>
+        </Windows>
+    </Order>
+    <Order Name="California Hotel AJK" State="CA">
+    </Order>
+</Orders>
 ```
