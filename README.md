@@ -1,6 +1,6 @@
 # Build info
 Azure Build Status (master)/(dev)
-| dev   |      master      |
+| master   |      dev      |
 |----------|:-------------:|
 | [![Build Status](https://dev.azure.com/o2bionics-products/ManagingSales.Web/_apis/build/status%2FManagingSales.Web?branchName=dev)](https://dev.azure.com/o2bionics-products/ManagingSales.Web/_build/latest?definitionId=61&branchName=master) | [![Build Status](https://dev.azure.com/o2bionics-products/ManagingSales.Web/_apis/build/status%2FManagingSales.Web?branchName=dev)](https://dev.azure.com/o2bionics-products/ManagingSales.Web/_build/latest?definitionId=61&branchName=dev)             |
 
@@ -8,7 +8,7 @@ Azure Build Status (master)/(dev)
 
 GitHub Build Status (master)/(dev)
 
-| dev   |      master      |
+| master   |      dev      |
 |----------|:-------------:|
 | [![ManagingSales.Web](https://github.com/live-dev999/ManagingSales.Web/actions/workflows/github-ci.yml/badge.svg?branch=master)](https://github.com/live-dev999/ManagingSales.Web/actions/workflows/github-ci.yml) | [![ManagingSales.Web](https://github.com/live-dev999/ManagingSales.Web/actions/workflows/github-ci.yml/badge.svg?branch=dev)](https://github.com/live-dev999/ManagingSales.Web/actions/workflows/github-ci.yml)
 
