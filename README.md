@@ -18,6 +18,8 @@ GitHub Build Status (master)/(dev)
 - [Microsoft SQL Server or Docker image with (minimal version version 2019 and up)](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) 
 - [.Net Core 7](https://dotnet.microsoft.com/en-us/download/dotnet/7.0)
   
+## Information about task
+[TASK-FOR-DEVELOPER.md](TASK-FOR-DEVELOPER.md)
 
 ## **Getting Started**
 ### Steps: 
