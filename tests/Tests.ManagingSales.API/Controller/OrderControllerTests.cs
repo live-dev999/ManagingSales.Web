@@ -87,8 +87,6 @@ namespace Tests.ManagingSales.API.Controller
         public async void OrderController_GetOrder_ReturnOk()
         {
             //Arrange
-            //var order = A.Fake<IOrder>();
-            //A.CallTo(() => order.Id).Returns<long>(1);
             var order = new Order() { Id = 1, Name = "name_test", State = "state_test" };
 
             //Act
